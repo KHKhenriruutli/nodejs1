@@ -9,12 +9,18 @@ exports.myDateTime = function () {
 
 
 http.createServer(function (req, res) {
-  fs.readFile('/demofile1.html', function (err, data) {
+  fs.appendFile("mynewfile1.txt", "Hello Content!", function(err) {
+    if (err) throw err;
+    console.log("Saved")
+  })
+  fs.unlink("mynewfile1.txt", function (err) {
+    if (err) throw err;
+    console.log("File deleted");
+  });
   res.writeHead(200, {'Content-Type': 'text/html'});
   var q = url.parse(req.url, true).query;
   var txt = q.year + " " + q.month
   res.write("The date and time are currently: " + dt.myDateTime());
   return res.end(txt);
-});
 }).listen(8080);
 
