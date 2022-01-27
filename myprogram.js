@@ -4,9 +4,21 @@ var dt = require('./myprogram.js');
 var fs = require('fs');
 
 var uc = require('upper-case');
+
+
+var readStream = fs.createReadStream('./demofile.txt');
+
+/*Write to the console when the file is opened:*/
+readStream.on('open', function () {
+  console.log('The file is open');
+});
+
+
+
+/*
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  /*Use our upper-case module to upper case a string:*/
+  Use our upper-case module to upper case a string:
   res.write(uc.upperCase("Hello World!"));
   res.end();
 }).listen(8080);
@@ -18,7 +30,7 @@ exports.myDateTime = function () {
 };
 
 
-/*
+
 http.createServer(function (req, res) {
   var q = url.parse(req.url, true);
   var filename = "." + q.pathname;
