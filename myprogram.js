@@ -3,10 +3,22 @@ var url = require('url');
 var dt = require('./myprogram.js');
 var fs = require('fs');
 
+var uc = require('upper-case');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  /*Use our upper-case module to upper case a string:*/
+  res.write(uc.upperCase("Hello World!"));
+  res.end();
+}).listen(8080);
+
+
+
 exports.myDateTime = function () {
   return Date();
 };
 
+
+/*
 http.createServer(function (req, res) {
   var q = url.parse(req.url, true);
   var filename = "." + q.pathname;
@@ -21,7 +33,7 @@ http.createServer(function (req, res) {
   });
 }).listen(8080);
 
-/*
+
 
 
 http.createServer(function (req, res) {
